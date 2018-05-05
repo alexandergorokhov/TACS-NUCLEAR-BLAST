@@ -67,7 +67,7 @@ public class UserControllerTest {
 
         User user = new User("testName", "testSurname", Byte.valueOf("0"), "testNick");
 
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/users/create")
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/users/")
             .content(new Gson().toJson(user)).contentType(MediaType.APPLICATION_JSON);
 
         MockHttpServletResponse response = mockMvc.perform(builder).andReturn().getResponse();

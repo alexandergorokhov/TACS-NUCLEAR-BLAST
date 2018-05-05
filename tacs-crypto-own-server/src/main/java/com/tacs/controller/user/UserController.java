@@ -20,7 +20,7 @@ public class UserController implements UserInterface {
     }
 
 
-    @RequestMapping(value = "create", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public @ResponseBody  User register(@RequestBody User userJson) {
       User user = new User(userJson.getName(),userJson.getSurname(),userJson.getAge(),userJson.getNick());
         users.put(user.getId(),user);
