@@ -2,6 +2,7 @@ package com.tacs.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Builder;
 
 import java.util.Random;
 
@@ -30,6 +31,10 @@ public class User {
         this.surname = surname;
         this.age = age;
         this.nick = nick;
+    }
+
+    public User(){
+
     }
 
 }

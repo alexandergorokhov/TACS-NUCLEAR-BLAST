@@ -2,15 +2,16 @@ package com.tacs.controller.user;
 
 import com.tacs.model.User;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.HashMap;
 
 public interface UserInterface {
-    @RequestMapping(value = "create/{name}/{surname}/{age}/{nick}", method = RequestMethod.POST)
-    String register(@PathVariable String name, @PathVariable String surname, @PathVariable Byte age, @PathVariable String nick) ;
 
+    @RequestMapping(method = RequestMethod.POST)
+    public User register(@RequestBody User user) ;
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public String getUser(@PathVariable String id) ;

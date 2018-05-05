@@ -3,10 +3,7 @@ package com.tacs.controller.user;
 import com.tacs.model.User;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -17,16 +14,18 @@ import java.util.HashMap;
 public class UserController implements UserInterface {
     //UNTIL DB IS SET UP (NIGGA TEMP STUFF)
     private static HashMap<Integer, User> users = new HashMap<>();
-    public static HashMap getUsers(){
+
+    public static HashMap getUsers() {
         return users;
     }
 
-    @RequestMapping(value = "create/{name}/{surname}/{age}/{nick}", method = RequestMethod.POST)
-    public String register(@PathVariable String name, @PathVariable String surname, @PathVariable Byte age, @PathVariable String nick) {
-        User user = new User(name, surname, age, nick);
-        users.put(user.getId(), user);
-        return user.toString();
-    }
+
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    public @ResponseBody  User register(@RequestBody User userJson) {
+      User user = new User(userJson.getName(),userJson.getSurname(),userJson.getAge(),userJson.getNick());
+        users.put(user.getId(),user);
+        return user;
+}
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     HashMap list() {
