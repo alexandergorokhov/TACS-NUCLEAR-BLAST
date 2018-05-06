@@ -4,7 +4,8 @@ import com.google.gson.Gson;
 import com.jayway.restassured.RestAssured;
 import com.tacs.App;
 import com.tacs.controller.user.UserController;
-import com.tacs.model.User;
+import com.tacs.pojo.User;
+import com.tacs.service.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +34,7 @@ import static org.hamcrest.CoreMatchers.is;
 @WebAppConfiguration
 @IntegrationTest({"server.port:0",
         "spring.datasource.url:jdbc:h2:mem:com.tacs.crypto;DB_CLOSE_ON_EXIT=FALSE"})
+
 public class UserControllerTest {
     @Value("${local.server.port}")
     int port;
@@ -48,18 +50,6 @@ public class UserControllerTest {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(context)
                 .build();
-    }
-
-    @Test
-    public void testLogin() throws Exception {
-        when().post("/users/login").then()
-                .body(is("login"));
-    }
-
-    @Test
-    public void testLogout() throws Exception {
-        when().post("/users/logout").then()
-                .body(is("logout"));
     }
 
     @Test
@@ -86,7 +76,7 @@ public class UserControllerTest {
     public void testGetUser() throws Exception {
         User user = new User("testName", "testSurname", new Byte("0"), "testNick");
         Integer id = user.getId();
-        UserController.getUsers().put(user.getId(), user);
+        UserService.getUsers().put(user.getId(), user);
         when().get("/users/" + user.getId().toString())
                 .then()
                 .body(is("User{" +

@@ -1,8 +1,7 @@
-package com.tacs.model;
+package com.tacs.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.Builder;
 
 import java.util.Random;
 
