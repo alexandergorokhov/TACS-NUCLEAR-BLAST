@@ -1,4 +1,4 @@
-package com.tacs.model;
+package com.tacs.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +30,10 @@ public class User {
         this.surname = surname;
         this.age = age;
         this.nick = nick;
+    }
+
+    public User(){
+
     }
 
 }
